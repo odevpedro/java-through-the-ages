@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE web-app PUBLIC
+    "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<!--
+    web.xml — Deployment Descriptor
+    Servlet API 2.3 / J2EE 1.3 (~2001)
+
+    Este arquivo e o ponto central de configuracao de uma aplicacao web J2EE.
+    Tudo que precisasse ser configurado — Servlets, mapeamentos de URL,
+    filtros, listeners, paginas de erro, parametros de contexto — era
+    declarado aqui.
+
+    Em Servlet 2.3, anotacoes nao existiam. Adicionar um novo Servlet ao
+    sistema significava obrigatoriamente editar este arquivo. Em times
+    com varios desenvolvedores, isso causava conflitos de merge frequentes.
+
+    A Servlet API 3.0 (2009) introduziu @WebServlet, @WebFilter e
+    @WebListener, tornando o web.xml opcional para casos simples.
+    O Spring Boot (2014) eliminou o web.xml completamente para a maioria
+    dos casos, configurando o container programaticamente.
+
+    ORDEM DOS ELEMENTOS:
+    O DTD do Servlet 2.3 define uma ordem obrigatoria para os elementos
+    filhos de <web-app>. O container valida essa ordem e rejeita o
+    arquivo se estiver errada. Era uma fonte comum de erros ao editar
+    web.xml manualmente.
+    Ordem: icon, display-name, description, distributable, context-param,
+    filter, filter-mapping, listener, servlet, servlet-mapping,
+    session-config, mime-mapping, welcome-file-list, error-page, taglib,
+    resource-env-ref, resource-ref, security-constraint, login-config,
+    security-role, env-entry, ejb-ref, ejb-local-ref.
+-->
+
+<web-app>
+
+    <display-name>Sistema de Mensagens - Servlet/JSP/JDBC (~2001)</display-name>
+
+    <description>
+        Demonstracao historica de aplicacao web Java com Servlet 2.3,
+        JSP 1.2 e JDBC puro. Parte do projeto Java Through the Ages.
+    </description>
+
+    <!--
+        context-param: parametros de configuracao disponiveis para toda
+        a aplicacao via servletContext.getInitParameter("nome").
+
+        Era o mecanismo de externalizar configuracoes antes de
+        application.properties (Spring Boot) ou de arquivos de propriedades
+        dedicados. Para configuracoes mais complexas, usava-se JNDI.
+    -->
+    <context-param>
+        <param-name>appVersion</param-name>
+        <param-value>1.0-HISTORICO</param-value>
+    </context-param>
+
+    <!--
+        listener: registra o InicializadorListener para ser notificado
+        quando o contexto da aplicacao for criado e destruido.
+
+        Ordem dos listeners e garantida: contextInitialized e chamado
+        na ordem em que aparecem no web.xml; contextDestroyed na ordem
+        inversa — comportamento util quando um listener depende de outro.
+    -->
+    <listener>
+        <listener-class>mensagens.InicializadorListener</listener-class>
+    </listener>
+
+    <!--
+        servlet: declara o Servlet e seus parametros de inicializacao.
+
+        load-on-startup: valor positivo faz o container instanciar e
+        chamar init() do Servlet durante o startup da aplicacao, em vez
+        de esperar pela primeira requisicao (lazy init). Numeros menores
+        tem maior prioridade.
+
+        Sem load-on-startup (ou com valor negativo), o Servlet e
+        instanciado na primeira requisicao — latencia alta no primeiro
+        acesso. Com load-on-startup, o startup e mais lento mas as
+        primeiras requisicoes sao rapidas.
+    -->
+    <servlet>
+        <servlet-name>MensagemServlet</servlet-name>
+        <servlet-class>mensagens.MensagemServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <!--
+        servlet-mapping: associa URLs a um Servlet declarado acima.
+
+        Uma URL pode ser mapeada exatamente (/mensagens), por prefixo
+        (/api/*) ou por extensao (*.do — padrao do Struts 1.x).
+
+        Para adicionar um segundo Servlet neste sistema, seria necessario:
+        1. Adicionar outro bloco <servlet> aqui
+        2. Adicionar outro bloco <servlet-mapping> aqui
+        3. Redeployar a aplicacao
+
+        Em Spring Boot, bastaria criar uma classe @RestController.
+    -->
+    <servlet-mapping>
+        <servlet-name>MensagemServlet</servlet-name>
+        <url-pattern>/mensagens</url-pattern>
+    </servlet-mapping>
+
+    <!--
+        Redirect da raiz para o Servlet principal.
+        O Servlet de redirect e um padrao comum para evitar uma pagina
+        de erro 404 ao acessar a URL raiz da aplicacao.
+    -->
+    <servlet>
+        <servlet-name>RedirectServlet</servlet-name>
+        <servlet-class>mensagens.RedirectServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RedirectServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!--
+        session-config: configura o timeout da sessao HTTP em minutos.
+        HttpSession era o mecanismo padrao de autenticacao e estado do
+        usuario. Sem ela, cada requisicao seria anonima.
+        O cookie JSESSIONID identificava a sessao do usuario no browser.
+    -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <!--
+        welcome-file-list: paginas tentadas em ordem ao acessar um
+        diretorio sem arquivo especificado. Equivale ao DirectoryIndex
+        do Apache HTTP Server.
+    -->
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!--
+        error-page: mapeia codigos de status HTTP ou excecoes Java para
+        paginas de erro customizadas. Sem isso, o container exibia sua
+        propria pagina de erro (geralmente feia e com stack trace exposto).
+        Expor stack traces em producao e um risco de segurança — revela
+        versoes de bibliotecas, estrutura de pacotes e possiveis vetores
+        de ataque.
+    -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/views/erro.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/views/erro.jsp</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/WEB-INF/views/erro.jsp</location>
+    </error-page>
+
+</web-app>

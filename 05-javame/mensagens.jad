@@ -1,0 +1,54 @@
+# mensagens.jad — Java Application Descriptor
+#
+# O arquivo .jad e o "manifesto externo" de uma aplicacao Java ME.
+# O dispositivo le o .jad ANTES de baixar o .jar para decidir se a
+# aplicacao pode ser instalada (verificar permissoes, espaco, versao MIDP).
+#
+# O .jad e o .jar devem ser distribuidos JUNTOS. O servidor web deve
+# servir o .jad com o MIME type correto:
+#   application/java-ad
+# Se o MIME type estiver errado, o dispositivo recusa o download.
+#
+# Campos obrigatorios (validados pelo AMS do dispositivo):
+#   MIDlet-Name        -> nome exibido no menu do telefone
+#   MIDlet-Version     -> versao no formato maior.menor.micro
+#   MIDlet-Vendor      -> nome do desenvolvedor/empresa
+#   MIDlet-Jar-URL     -> URL do JAR (relativa ao .jad ou absoluta)
+#   MIDlet-Jar-Size    -> tamanho exato do JAR em bytes
+#                         (o dispositivo recusa se diferir do .jar real)
+#   MicroEdition-Profile     -> MIDP-1.0, MIDP-2.0, etc.
+#   MicroEdition-Configuration -> CLDC-1.0, CLDC-1.1, etc.
+#
+# MIDlet-1: Nome_Exibido, caminho_icone.png, classe_principal
+#   O icone deve ser um PNG de 12x12 ou 16x16 pixels — imenso desafio
+#   de design para criar algo reconhecivel nesse tamanho.
+#   null (vazio) significa sem icone.
+
+MIDlet-Name: Mensagens
+MIDlet-Version: 1.0.0
+MIDlet-Vendor: Java Through the Ages
+MIDlet-Description: Sistema simples de mensagens - Java ME MIDP 2.0
+
+MIDlet-1: Mensagens,, mensagens.MensagemMidlet
+
+MIDlet-Jar-URL: mensagens.jar
+MIDlet-Jar-Size: 8590
+# ATENCAO: MIDlet-Jar-Size deve ser atualizado com o tamanho real do JAR
+# antes de distribuir para um dispositivo real. O build.sh atualiza
+# este valor automaticamente usando 'wc -c mensagens.jar'.
+
+MicroEdition-Profile: MIDP-2.0
+MicroEdition-Configuration: CLDC-1.1
+
+# Permissoes de rede (nao usadas neste exemplo, mas incluidas como referencia)
+# MIDlet-Permissions: javax.microedition.io.Connector.http
+# MIDlet-Permissions-Opt: javax.microedition.io.Connector.https
+
+# Informacoes de instalacao exibidas ao usuario antes de instalar:
+# MIDlet-Install-Notify: http://servidor.com/log-instalacao
+# MIDlet-Delete-Notify:  http://servidor.com/log-desinstalacao
+
+# Localizacao (suporte a multiplos idiomas via arquivos de propriedades)
+# Em MIDP nao havia ResourceBundle. A localizacao era feita manualmente
+# carregando arquivos .properties como streams e parseando as linhas.
+# MIDlet-Locales: pt-BR, en-US

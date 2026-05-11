@@ -1,0 +1,28 @@
+# bytecode
+**/out/
+**/out-preverified/
+**/*.class
+
+# artefatos de build
+**/*.jar
+**/*.war
+**/war/
+
+# dados gerados em runtime
+**/mensagens.dat
+
+# dependências (não versionar JARs de terceiros)
+**/lib/*.jar
+
+# pacotes de origem locais usados apenas para montagem
+modulo*.zip
+_setup_tmp/
+setup.sh
+
+# arquivos locais de editor/sistema
+.DS_Store
+.idea/
+.vscode/
+
+# backup do sed (macOS)
+**/*.bak
