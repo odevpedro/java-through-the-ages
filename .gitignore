@@ -1,28 +1,37 @@
-# bytecode
+# Build output
 **/out/
 **/out-preverified/
-**/*.class
+**/target/
+**/lib/*.jar
+**/lib/
+**/META-INF/
 
-# artefatos de build
+# Binaries
 **/*.jar
 **/*.war
-**/war/
-
-# dados gerados em runtime
 **/mensagens.dat
+**/clientes.dat
 
-# dependências (não versionar JARs de terceiros)
-**/lib/*.jar
-
-# pacotes de origem locais usados apenas para montagem
-modulo*.zip
-_setup_tmp/
-setup.sh
-
-# arquivos locais de editor/sistema
-.DS_Store
+# IDE
+.classpath
+.project
+.settings/
 .idea/
+*.iml
+*.ipr
+*.iws
 .vscode/
+*.swp
+*.swo
 
-# backup do sed (macOS)
-**/*.bak
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+_temp/
+_setup_tmp/
+*.bak
+
+# Specific leftovers
+05-javame/
