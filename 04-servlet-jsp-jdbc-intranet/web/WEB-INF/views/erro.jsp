@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Erro - Sistema de Mensagens</title>
+    <title>Erro - Sistema de Chamados</title>
     <style type="text/css">
         body       { font-family: Arial, sans-serif; font-size: 13px;
                      background-color: #f0f0f0; margin: 20px; color: #333; }
@@ -19,7 +19,7 @@
 <div class="container">
     <h1>Erro ao processar a requisicao</h1>
     <p>O sistema nao conseguiu completar a operacao solicitada.</p>
-    <p><a class="voltar" href="<%= request.getContextPath() %>/mensagens">Voltar para mensagens</a></p>
+    <p><a class="voltar" href="<%= request.getContextPath() %>/chamados">Voltar para chamados</a></p>
 </div>
 </body>
 </html>

@@ -1,11 +1,15 @@
 package catalogo;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-@Controller
+@RestController
 @RequestMapping("/api/produtos")
 public class ProdutoController {
     private ProdutoRepository repository;
@@ -15,34 +19,45 @@ public class ProdutoController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    @ResponseBody
-    public List<Produto> listar() {
-        return repository.findAll();
+    public List<ProdutoDTO> listar() {
+        return repository.findAll().stream()
+                .map(ProdutoDTO::new)
+                .collect(Collectors.toList());
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public Produto obter(@PathVariable int id) {
-        return repository.findById(id);
+    public ResponseEntity<ProdutoDTO> obter(@PathVariable int id) {
+        Produto p = repository.findById(id);
+        if (p == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(new ProdutoDTO(p));
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    @ResponseBody
-    public Produto criar(@RequestBody Produto produto) {
-        return repository.save(produto);
+    @ResponseStatus(HttpStatus.CREATED)
+    public ProdutoDTO criar(@RequestBody ProdutoDTO dto) {
+        Produto salvo = repository.save(dto.toEntity());
+        return new ProdutoDTO(salvo);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    @ResponseBody
-    public Produto atualizar(@PathVariable int id, @RequestBody Produto produto) {
-        return repository.update(id, produto);
+    public ResponseEntity<ProdutoDTO> atualizar(@PathVariable int id, @RequestBody ProdutoDTO dto) {
+        if (repository.findById(id) == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(new ProdutoDTO(repository.update(id, dto.toEntity())));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    @ResponseBody
-    public String deletar(@PathVariable int id) {
+    public ResponseEntity<Map<String, String>> deletar(@PathVariable int id) {
         Produto removido = repository.delete(id);
-        return (removido != null) ? "{\"message\":\"Produto removido com sucesso\"}"
-                                 : "{\"message\":\"Produto nao encontrado\"}";
+        Map<String, String> resposta = new HashMap<>();
+        if (removido != null) {
+            resposta.put("message", "Produto removido com sucesso");
+            return ResponseEntity.ok(resposta);
+        }
+        resposta.put("message", "Produto nao encontrado");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resposta);
     }
 }

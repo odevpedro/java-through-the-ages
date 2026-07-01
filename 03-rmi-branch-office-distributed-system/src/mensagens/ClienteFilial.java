@@ -2,8 +2,12 @@ package mensagens;
 
 import java.rmi.Naming;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ClienteFilial {
+
+    private static final Logger LOG = Logger.getLogger(ClienteFilial.class.getName());
 
     public static void main(String[] args) {
         try {
@@ -38,8 +42,8 @@ public class ClienteFilial {
             System.out.println("Estoque atualizado do Monitor LED 24: " + disp + " unidades.");
 
         } catch (Exception e) {
-            System.err.println("Erro no cliente:");
-            e.printStackTrace();
+            System.err.println("Erro no cliente: " + e.getMessage());
+            LOG.log(Level.SEVERE, "Erro ao executar cliente filial", e);
         }
     }
 }

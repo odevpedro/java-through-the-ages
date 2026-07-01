@@ -2,6 +2,7 @@ package pedidos;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class PedidoService {
@@ -12,7 +13,7 @@ public class PedidoService {
     }
 
     @Transactional
-    public Pedido criarPedido(String cliente, String produto, int quantidade, double valorTotal) {
+    public Pedido criarPedido(String cliente, String produto, int quantidade, BigDecimal valorTotal) {
         Pedido pedido = new Pedido(cliente, produto, quantidade, valorTotal);
         int id = repository.salvar(pedido);
         pedido.setId(id);

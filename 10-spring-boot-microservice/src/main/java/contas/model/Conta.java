@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -15,7 +16,7 @@ public class Conta {
 
     private String descricao;
 
-    private double valor;
+    private BigDecimal valor;
 
     private String tipo; // RECEBER ou PAGAR
 
@@ -39,11 +40,11 @@ public class Conta {
         this.descricao = descricao;
     }
 
-    public double getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 

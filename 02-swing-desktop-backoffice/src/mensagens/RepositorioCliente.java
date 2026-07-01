@@ -3,8 +3,12 @@ package mensagens;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RepositorioCliente {
+
+    private static final Logger LOG = Logger.getLogger(RepositorioCliente.class.getName());
     private static final String ARQUIVO = "clientes.dat";
     private List<Cliente> clientes;
 
@@ -44,7 +48,7 @@ public class RepositorioCliente {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ARQUIVO))) {
             oos.writeObject(clientes);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.log(Level.SEVERE, "Falha ao salvar clientes em " + ARQUIVO, e);
         }
     }
 
@@ -55,7 +59,7 @@ public class RepositorioCliente {
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(arquivo))) {
                 clientes = (List<Cliente>) ois.readObject();
             } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
+                LOG.log(Level.SEVERE, "Falha ao carregar clientes de " + ARQUIVO, e);
             }
         }
     }

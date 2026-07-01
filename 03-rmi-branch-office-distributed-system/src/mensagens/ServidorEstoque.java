@@ -2,8 +2,12 @@ package mensagens;
 
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ServidorEstoque {
+
+    private static final Logger LOG = Logger.getLogger(ServidorEstoque.class.getName());
 
     public static void main(String[] args) {
         try {
@@ -24,8 +28,9 @@ public class ServidorEstoque {
             System.out.println("Pressione Ctrl+C para encerrar.");
 
         } catch (Exception e) {
-            System.err.println("Erro no servidor:");
-            e.printStackTrace();
+            System.err.println("Erro no servidor: " + e.getMessage());
+            LOG.log(Level.SEVERE, "Erro ao iniciar servidor de estoque", e);
+            System.exit(1);
         }
     }
 }

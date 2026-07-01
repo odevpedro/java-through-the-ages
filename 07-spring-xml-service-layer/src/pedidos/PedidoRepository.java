@@ -1,19 +1,25 @@
 package pedidos;
 
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import javax.sql.DataSource;
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.List;
 
-public class PedidoRepository {
+public class PedidoRepository implements InitializingBean {
     private JdbcTemplate jdbcTemplate;
 
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    @Override
+    public void afterPropertiesSet() {
+        criarTabela();
     }
 
     public void criarTabela() {
@@ -22,7 +28,7 @@ public class PedidoRepository {
             "cliente VARCHAR(255), " +
             "produto VARCHAR(255), " +
             "quantidade INTEGER, " +
-            "valor_total DOUBLE, " +
+            "valor_total DECIMAL(12,2), " +
             "status VARCHAR(50))");
     }
 
@@ -35,7 +41,7 @@ public class PedidoRepository {
             ps.setString(1, p.getCliente());
             ps.setString(2, p.getProduto());
             ps.setInt(3, p.getQuantidade());
-            ps.setDouble(4, p.getValorTotal());
+            ps.setBigDecimal(4, p.getValorTotal());
             ps.setString(5, p.getStatus());
             return ps;
         }, keyHolder);
@@ -53,7 +59,7 @@ public class PedidoRepository {
             p.setCliente(rs.getString("cliente"));
             p.setProduto(rs.getString("produto"));
             p.setQuantidade(rs.getInt("quantidade"));
-            p.setValorTotal(rs.getDouble("valor_total"));
+            p.setValorTotal(rs.getBigDecimal("valor_total"));
             p.setStatus(rs.getString("status"));
             return p;
         });

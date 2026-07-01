@@ -17,6 +17,11 @@ public class ChamadoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        String acao = req.getParameter("acao");
+        if ("novo".equals(acao)) {
+            req.getRequestDispatcher("/WEB-INF/views/formulario.jsp").forward(req, resp);
+            return;
+        }
         try {
             List<Chamado> chamados = dao.listar();
             req.setAttribute("chamados", chamados);
@@ -37,7 +42,7 @@ public class ChamadoServlet extends HttpServlet {
         if (titulo == null || titulo.trim().isEmpty() ||
             descricao == null || descricao.trim().isEmpty() ||
             solicitante == null || solicitante.trim().isEmpty()) {
-            resp.sendRedirect(req.getContextPath() + "/WEB-INF/views/formulario.jsp?erro=campos+obrigatorios");
+            resp.sendRedirect(req.getContextPath() + "/chamados?acao=novo&erro=campos+obrigatorios");
             return;
         }
 

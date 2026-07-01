@@ -5,7 +5,7 @@
 <body>
 <h1>Chamados Internos</h1>
 <hr/>
-<a href="<%= request.getContextPath() %>/WEB-INF/views/formulario.jsp">Novo Chamado</a>
+<a href="<%= request.getContextPath() %>/chamados?acao=novo">Novo Chamado</a>
 <hr/>
 <%
     List<Chamado> chamados = (List<Chamado>) request.getAttribute("chamados");

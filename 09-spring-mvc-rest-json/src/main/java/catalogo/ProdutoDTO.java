@@ -2,19 +2,23 @@ package catalogo;
 
 import java.math.BigDecimal;
 
-public class Produto {
+public class ProdutoDTO {
     private int id;
     private String nome;
     private BigDecimal preco;
     private String categoria;
 
-    public Produto() {}
+    public ProdutoDTO() {}
 
-    public Produto(int id, String nome, BigDecimal preco, String categoria) {
-        this.id = id;
-        this.nome = nome;
-        this.preco = preco;
-        this.categoria = categoria;
+    public ProdutoDTO(Produto p) {
+        this.id = p.getId();
+        this.nome = p.getNome();
+        this.preco = p.getPreco();
+        this.categoria = p.getCategoria();
+    }
+
+    public Produto toEntity() {
+        return new Produto(id, nome, preco, categoria);
     }
 
     public int getId() { return id; }

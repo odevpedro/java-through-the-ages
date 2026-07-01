@@ -17,6 +17,7 @@ public class Conta implements Serializable {
     public int getNumero() { return numero; }
     public String getTitular() { return titular; }
     public double getSaldo() { return saldo; }
+    public void setSaldo(double saldo) { this.saldo = saldo; }
 
     public void debitar(double valor) {
         if (valor > saldo) throw new IllegalArgumentException("Saldo insuficiente");

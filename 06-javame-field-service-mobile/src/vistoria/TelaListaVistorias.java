@@ -29,23 +29,13 @@ public class TelaListaVistorias extends List implements CommandListener {
         deleteAll();
         try {
             RepositorioRMS repositorio = new RepositorioRMS();
-            RecordEnumeration re = repositorio.enumerar();
-            while (re.hasNextElement()) {
-                int recordId = re.nextRecordId();
-                RecordStore rs = RecordStore.openRecordStore("VistoriasStore", false);
-                byte[] dados = rs.getRecord(recordId);
-                ByteArrayInputStream bais = new ByteArrayInputStream(dados);
-                DataInputStream dis = new DataInputStream(bais);
-                String codigo = dis.readUTF();
-                String status = dis.readUTF();
-                dis.close();
-                bais.close();
-                rs.closeRecordStore();
-                append(codigo + " - " + status, null);
+            java.util.Vector lista = repositorio.listarTodos();
+            for (int i = 0; i < lista.size(); i++) {
+                Vistoria v = (Vistoria) lista.elementAt(i);
+                append(v.getCodigoCliente() + " - " + v.getStatus(), null);
             }
-            re.destroy();
         } catch (Exception e) {
-            // sem registros ainda — lista vazia
+            // sem registros ainda ou erro de leitura — lista vazia
         }
     }
 

@@ -113,7 +113,7 @@
 | cliente | VARCHAR(255) | Nome do cliente |
 | produto | VARCHAR(255) | Produto comprado |
 | quantidade | INTEGER | Quantidade |
-| valorTotal | DOUBLE | Valor total do pedido |
+| valorTotal | DECIMAL(12,2) | Valor total do pedido |
 | status | VARCHAR(50) | PENDENTE, PAGO, CANCELADO |
 
 ---
@@ -149,7 +149,7 @@
 |-------|------|-----------|
 | id | int | Identificador |
 | nome | String | Nome do produto |
-| preco | double | Preco |
+| preco | BigDecimal | Preco |
 | categoria | String | Categoria |
 
 ---
@@ -163,7 +163,7 @@
 |-------|------|-----------|
 | id | Long (auto) | Identificador |
 | descricao | String | Descricao da conta |
-| valor | double | Valor |
+| valor | BigDecimal | Valor |
 | tipo | String | RECEBER ou PAGAR |
 | status | String | PENDENTE ou PAGO |
 | vencimento | LocalDate | Data de vencimento |
@@ -180,7 +180,7 @@
 | id | Long (auto) | Identificador |
 | cliente | String | Nome do cliente |
 | descricao | String | Descricao do pedido |
-| valor | double | Valor |
+| valor | BigDecimal | Valor |
 | status | String | CRIADO, PROCESSANDO, CONCLUIDO, ERRO |
 | criadoEm | LocalDateTime | Timestamp de criacao |
 | tentativas | int | Numero de tentativas de processamento |
@@ -195,9 +195,9 @@
 ### Solicitacao (sealed interface)
 | Subtipo | Campos | Descricao |
 |---------|--------|-----------|
-| Emprestimo | cliente, valor, parcelas, rendaMensal | Solicitacao de emprestimo |
-| Credito | cliente, valorSolicitado, limiteDisponivel, possuiRestricao | Solicitacao de credito |
-| Consorcio | cliente, valorTotal, totalParcelas, parcelasPagas | Solicitacao de consorcio |
+| Emprestimo | cliente (String), valor (BigDecimal), parcelas (int), rendaMensal (BigDecimal) | Solicitacao de emprestimo |
+| Credito | cliente (String), valor (BigDecimal), limiteDisponivel (BigDecimal), possuiRestricao (boolean) | Solicitacao de credito |
+| Consorcio | cliente (String), valor (BigDecimal), totalParcelas (int), parcelasPagas (int) | Solicitacao de consorcio |
 
 ### RegraAnalise (sealed interface)
 | Subtipo | Campos | Descricao |

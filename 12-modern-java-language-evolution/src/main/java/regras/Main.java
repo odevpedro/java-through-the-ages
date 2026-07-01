@@ -1,5 +1,6 @@
 package regras;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static regras.RegraAnalise.*;
@@ -7,13 +8,13 @@ import static regras.RegraAnalise.*;
 public class Main {
     public static void main(String[] args) {
         var solicitacoes = List.of(
-            new Solicitacao.Emprestimo("Joao Silva", 50000, 36, 5000.0),
-            new Solicitacao.Emprestimo("Maria Santos", 100000, 24, 2000.0),
-            new Solicitacao.Credito("Carlos Oliveira", 5000, 10000, false),
-            new Solicitacao.Credito("Ana Costa", 15000, 10000, false),
-            new Solicitacao.Credito("Pedro Alves", 3000, 5000, true),
-            new Solicitacao.Consorcio("Lucia Pereira", 80000, 60, 24),
-            new Solicitacao.Consorcio("Rafael Souza", 60000, 48, 6)
+            new Solicitacao.Emprestimo("Joao Silva", new BigDecimal("50000"), 36, new BigDecimal("5000.0")),
+            new Solicitacao.Emprestimo("Maria Santos", new BigDecimal("100000"), 24, new BigDecimal("2000.0")),
+            new Solicitacao.Credito("Carlos Oliveira", new BigDecimal("5000"), new BigDecimal("10000"), false),
+            new Solicitacao.Credito("Ana Costa", new BigDecimal("15000"), new BigDecimal("10000"), false),
+            new Solicitacao.Credito("Pedro Alves", new BigDecimal("3000"), new BigDecimal("5000"), true),
+            new Solicitacao.Consorcio("Lucia Pereira", new BigDecimal("80000"), 60, 24),
+            new Solicitacao.Consorcio("Rafael Souza", new BigDecimal("60000"), 48, 6)
         );
 
         System.out.println("=== MOTOR DE REGRAS — ANALISE DE SOLICITACOES ===\n");
@@ -31,7 +32,7 @@ public class Main {
                 case RevisaoManual r -> "REVISAO MANUAL: " + r.motivo();
             };
             System.out.printf("[%s] %-50s | %s%n",
-                tipo + "  ", s.cliente() + " (R$%.2f)".formatted(s.valor()), descricaoResultado);
+                tipo + "  ", s.cliente() + " (R$" + s.valor() + ")", descricaoResultado);
         });
 
         System.out.println("\n=== ESTATISTICAS ===");

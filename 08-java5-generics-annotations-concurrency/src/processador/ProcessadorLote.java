@@ -5,7 +5,6 @@ import java.util.concurrent.*;
 
 public class ProcessadorLote {
 
-    @SuppressWarnings("unchecked")
     public List<ResultadoProcessamento> processar(List<Tarefa> tarefas, int numThreads)
             throws InterruptedException {
 

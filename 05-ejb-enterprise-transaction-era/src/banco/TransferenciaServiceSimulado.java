@@ -29,10 +29,9 @@ public class TransferenciaServiceSimulado {
         try {
             contaOrigem.debitar(valor);
             contaDestino.creditar(valor);
-            // "commit" implicito — sem excecao
         } catch (Exception e) {
-            // "rollback" manual — as contas originais mantem os valores
-            // (na simulacao nao precisamos restaurar porque o debito falhou)
+            contaOrigem.setSaldo(saldoOrigemBackup);
+            contaDestino.setSaldo(saldoDestinoBackup);
             throw e;
         }
     }

@@ -1,5 +1,6 @@
 package contas.controller;
 
+import contas.dto.ContaDTO;
 import contas.model.Conta;
 import contas.service.ContaService;
 import org.springframework.http.HttpStatus;
@@ -7,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/contas")
@@ -19,24 +21,26 @@ public class ContaController {
     }
 
     @GetMapping
-    public List<Conta> listar() {
-        return service.listarTodas();
+    public List<ContaDTO> listar() {
+        return service.listarTodas().stream()
+                .map(ContaDTO::new)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Conta> buscar(@PathVariable Long id) {
-        return ResponseEntity.ok(service.buscarPorId(id));
+    public ResponseEntity<ContaDTO> buscar(@PathVariable Long id) {
+        return ResponseEntity.ok(new ContaDTO(service.buscarPorId(id)));
     }
 
     @PostMapping
-    public ResponseEntity<Conta> criar(@RequestBody Conta conta) {
-        Conta criada = service.criar(conta);
-        return ResponseEntity.status(HttpStatus.CREATED).body(criada);
+    public ResponseEntity<ContaDTO> criar(@RequestBody ContaDTO dto) {
+        Conta criada = service.criar(dto.toEntity());
+        return ResponseEntity.status(HttpStatus.CREATED).body(new ContaDTO(criada));
     }
 
     @PutMapping("/{id}/pagar")
-    public ResponseEntity<Conta> pagar(@PathVariable Long id) {
-        return ResponseEntity.ok(service.pagar(id));
+    public ResponseEntity<ContaDTO> pagar(@PathVariable Long id) {
+        return ResponseEntity.ok(new ContaDTO(service.pagar(id)));
     }
 
     @DeleteMapping("/{id}")

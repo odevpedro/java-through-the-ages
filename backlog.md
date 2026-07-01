@@ -1,7 +1,7 @@
 # Backlog — Java Through the Ages
 
 > Registro vivo do progresso do projeto. Atualizado a cada mudanca de estado.
-> **Ultima atualizacao:** 2026-06-13
+> **Ultima atualizacao:** 2026-06-30
 
 ---
 
@@ -30,12 +30,6 @@ coerente com o contexto da epoca — nao uma repeticao do mesmo dominio funciona
 
 ---
 
-## Em Andamento
-
-| Item | Prioridade | Modulo |
-|------|------------|--------|
-| `[~]` Escrita de modulos 09-12 | P1 | 09–12 |
-
 ---
 
 ## Concluidas
@@ -57,3 +51,19 @@ coerente com o contexto da epoca — nao uma repeticao do mesmo dominio funciona
 | `[x]` Modulo 10 — Spring Boot Microservice | 2026-06-13 | 10 |
 | `[x]` Modulo 11 — Cloud Native Observability | 2026-06-13 | 11 |
 | `[x]` Modulo 12 — Modern Java Language | 2026-06-13 | 12 |
+| `[x]` Bugfix: tabela nao criada no Mod 07 (InitializingBean) | 2026-06-30 | 07 |
+| `[x]` Bugfix: rollback simulado no Mod 05 (restauracao de backup) | 2026-06-30 | 05 |
+| `[x]` Bugfix: status nulo em dados iniciais do Mod 10 | 2026-06-30 | 10 |
+| `[x]` Bugfix: JSP legado do dominio anterior removido (Mod 04) | 2026-06-30 | 04 |
+| `[x]` Bugfix: links quebrados no Mod 04 (/mensagens e /WEB-INF/) | 2026-06-30 | 04 |
+| `[x]` Bugfix: recursao @Async bypassando proxy Spring (Mod 11) | 2026-06-30 | 11 |
+| `[x]` Bugfix: condicao de corrida no retry do Mod 11 | 2026-06-30 | 11 |
+| `[x]` Melhoria: metricas Prometheus customizadas (Mod 11) | 2026-06-30 | 11 |
+| `[x]` Melhoria: ResponseEntity 404 e JSON Map no Mod 09 | 2026-06-30 | 09 |
+| `[x]` Melhoria: otimizacao RecordStore e remocao de metodo morto (Mod 06) | 2026-06-30 | 06 |
+| `[x]` Limpeza: @SuppressWarnings desnecessario removido (Mod 08) | 2026-06-30 | 08 |
+| `[x]` Exception handling: e.printStackTrace() substituido por java.util.logging (Mod 02, 03) | 2026-06-30 | 02, 03 |
+| `[x]` Troca double por BigDecimal (Mod 07, 09, 10, 11, 12) | 2026-06-30 | 07, 09, 10, 11, 12 |
+| `[x]` DTOs para desacoplar API do modelo interno (Mod 09, 10, 11) | 2026-06-30 | 09, 10, 11 |
+| `[x]` Testes unitarios com JUnit 5 + Mockito (Mod 09, 10, 11, 12) | 2026-06-30 | 09, 10, 11, 12 |
+| `[x]` data-model.md atualizado com BigDecimal e tipos corrigidos | 2026-06-30 | docs |

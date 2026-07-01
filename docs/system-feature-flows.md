@@ -44,7 +44,7 @@
 
 **Dominio:** Sistema de chamados internos
 **Tecnologia:** Servlet + JSP + JDBC + HSQLDB
-**Fluxo:** GET /chamados -> ChamadoServlet.doGet() -> ChamadoDao.listar() -> forward para listagem.jsp. POST /chamados -> doPost() -> valida campos -> ChamadoDao.inserir() -> redirect.
+**Fluxo:** GET /chamados -> ChamadoServlet.doGet() -> ChamadoDao.listar() -> forward para listagem.jsp. GET /chamados?acao=novo -> forward para formulario.jsp. POST /chamados -> doPost() -> valida campos -> ChamadoDao.inserir() -> redirect.
 
 ## Modulo 05 — EJB Enterprise Transaction Era
 
@@ -56,7 +56,7 @@
 
 **Dominio:** Vistoria tecnica offline
 **Tecnologia:** MIDP 2.0 / RecordStore
-**Fluxo:** TelaLista -> "Nova vistoria" -> TelaVistoria (codigo, status, observacao) -> Salvar -> serializa byte[] no RecordStore. "Detalhes" le do RecordStore e exibe Alert.
+**Fluxo:** TelaLista -> atualizar() chama RepositorioRMS.listarTodos() (abre RecordStore uma vez, itera com RecordEnumeration, retorna Vector<Vistoria>) -> exibe na lista. "Nova vistoria" -> TelaVistoria (codigo, status, observacao) -> Salvar -> serializa byte[] no RecordStore. "Detalhes" exibe Alert com o item selecionado.
 
 ## Modulo 07 — Spring XML Service Layer
 
@@ -86,7 +86,7 @@
 
 **Dominio:** Processamento assincrono de pedidos com observabilidade
 **Tecnologia:** Spring Boot + Actuator + Micrometer + @Async
-**Fluxo:** POST /api/pedidos -> PedidoController -> PedidoService (log estruturado, salva CRIADO) -> processamento async (worker simulado) -> atualiza status -> metricas. Health checks customizados.
+**Fluxo:** POST /api/pedidos -> PedidoController -> PedidoService (log estruturado, salva CRIADO, incrementa contador pedidos.criados) -> obtem proxy via ApplicationContext -> @Async processamento em thread pool separado (status PROCESSANDO, simula 2s, 20% chance de erro). Em caso de erro: salva como CRIADO e reenvia via proxy (ate 3 tentativas). Sucesso: salva CONCLUIDO e incrementa pedidos.concluidos. Exaustao: salva ERRO e incrementa pedidos.erro. Health check customizado com contagem de erros. Metricas Prometheus expostas em /actuator/prometheus.
 
 ## Modulo 12 — Modern Java Language Evolution
 
