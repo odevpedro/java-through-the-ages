@@ -1,4 +1,4 @@
-package mensagens;
+package produtos;
 
 import java.applet.Applet;
 import java.awt.*;

@@ -19,8 +19,8 @@ echo "[2/4] Compilando fontes..."
 javac \
     -d out \
     -sourcepath src \
-    src/mensagens/Produto.java \
-    src/mensagens/CatalogoApplet.java
+    src/produtos/Produto.java \
+    src/produtos/CatalogoApplet.java
 
 echo "[3/4] Empacotando em JAR..."
 jar cvf catalogo.jar -C out .

@@ -6,8 +6,8 @@
 #  Pode ser executado multiplas vezes.
 # =============================================================================
 
-if [ ! -f mensagens-cliente.jar ]; then
-    echo "ERRO: mensagens-cliente.jar nao encontrado."
+if [ ! -f estoque-cliente.jar ]; then
+    echo "ERRO: estoque-cliente.jar nao encontrado."
     echo "Execute primeiro: sh build.sh"
     exit 1
 fi
@@ -15,4 +15,4 @@ fi
 echo "Executando cliente RMI..."
 echo ""
 
-java -jar mensagens-cliente.jar
+java -jar estoque-cliente.jar

@@ -1,4 +1,4 @@
-package mensagens;
+package cadastro;
 
 import javax.swing.*;
 import java.util.logging.Level;

@@ -11,7 +11,7 @@ mkdir build\WEB-INF\classes
 mkdir build\WEB-INF\lib
 
 echo === Compilando classes ===
-javac -d build\WEB-INF\classes -cp "%TOMCAT_LIB%\servlet-api.jar;%HSQLDB_JAR%" src\mensagens\*.java
+javac -d build\WEB-INF\classes -cp "%TOMCAT_LIB%\servlet-api.jar;%HSQLDB_JAR%" src\chamados\*.java
 
 echo === Copiando dependencias ===
 copy "%HSQLDB_JAR%" build\WEB-INF\lib\

@@ -9,7 +9,6 @@
 # Binaries
 **/*.jar
 **/*.war
-**/mensagens.dat
 **/clientes.dat
 
 # IDE
@@ -32,6 +31,3 @@ Thumbs.db
 _temp/
 _setup_tmp/
 *.bak
-
-# Specific leftovers
-05-javame/

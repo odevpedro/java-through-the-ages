@@ -1,4 +1,4 @@
-package mensagens;
+package estoque;
 
 import java.io.Serializable;
 

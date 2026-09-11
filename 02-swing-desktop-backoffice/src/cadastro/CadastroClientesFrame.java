@@ -1,4 +1,4 @@
-package mensagens;
+package cadastro;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

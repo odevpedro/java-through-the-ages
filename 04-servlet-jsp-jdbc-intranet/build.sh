@@ -20,7 +20,7 @@ fi
 echo "=== Compilando classes ==="
 javac -d build/WEB-INF/classes \
     -cp "$TOMCAT_LIB/servlet-api.jar:$HSQLDB_JAR" \
-    src/mensagens/*.java
+    src/chamados/*.java
 
 echo "=== Copiando dependencias ==="
 cp "$HSQLDB_JAR" build/WEB-INF/lib/

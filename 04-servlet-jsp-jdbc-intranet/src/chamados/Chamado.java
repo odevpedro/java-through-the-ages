@@ -1,4 +1,4 @@
-package mensagens;
+package chamados;
 
 public class Chamado {
     private int id;

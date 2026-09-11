@@ -1,4 +1,4 @@
-package mensagens;
+package cadastro;
 
 import java.io.Serializable;
 

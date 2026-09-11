@@ -7,10 +7,10 @@ mkdir out
 
 echo [2/4] Compilando fontes...
 javac -d out -sourcepath src ^
-    src\mensagens\Cliente.java ^
-    src\mensagens\RepositorioCliente.java ^
-    src\mensagens\CadastroClientesFrame.java ^
-    src\mensagens\Main.java
+    src\cadastro\Cliente.java ^
+    src\cadastro\RepositorioCliente.java ^
+    src\cadastro\CadastroClientesFrame.java ^
+    src\cadastro\Main.java
 
 if %ERRORLEVEL% NEQ 0 (
     echo ERRO: Compilacao falhou.
@@ -18,8 +18,8 @@ if %ERRORLEVEL% NEQ 0 (
 )
 
 echo [3/4] Empacotando em JAR executavel...
-echo Main-Class: mensagens.Main > MANIFEST.MF
-jar cvfm mensagens-swing.jar MANIFEST.MF -C out .
+echo Main-Class: cadastro.Main > MANIFEST.MF
+jar cvfm cadastro-swing.jar MANIFEST.MF -C out .
 del MANIFEST.MF
 
 if %ERRORLEVEL% NEQ 0 (
@@ -28,8 +28,8 @@ if %ERRORLEVEL% NEQ 0 (
 )
 
 echo [4/4] Iniciando aplicacao Swing...
-java -jar mensagens-swing.jar
+java -jar cadastro-swing.jar
 
 echo.
-echo Build concluido. Para reabrir: java -jar mensagens-swing.jar
+echo Build concluido. Para reabrir: java -jar cadastro-swing.jar
 echo Dados salvos em: clientes.dat

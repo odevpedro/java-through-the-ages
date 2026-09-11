@@ -1,4 +1,4 @@
-package mensagens;
+package estoque;
 
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;

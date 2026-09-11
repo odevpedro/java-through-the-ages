@@ -1,4 +1,4 @@
-<%@ page import="java.util.List, mensagens.Chamado" %>
+<%@ page import="java.util.List, chamados.Chamado" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head><title>Chamados - Listagem</title></head>

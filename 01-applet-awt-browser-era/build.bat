@@ -6,7 +6,7 @@ if exist out rmdir /s /q out
 mkdir out
 
 echo [2/4] Compilando fontes...
-javac -d out -sourcepath src src\mensagens\Produto.java src\mensagens\CatalogoApplet.java
+javac -d out -sourcepath src src\produtos\Produto.java src\produtos\CatalogoApplet.java
 
 if %ERRORLEVEL% NEQ 0 (
     echo ERRO: Compilacao falhou.

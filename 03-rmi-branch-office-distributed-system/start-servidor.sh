@@ -6,8 +6,8 @@
 #  Para encerrar: Ctrl+C
 # =============================================================================
 
-if [ ! -f mensagens-servidor.jar ]; then
-    echo "ERRO: mensagens-servidor.jar nao encontrado."
+if [ ! -f estoque-servidor.jar ]; then
+    echo "ERRO: estoque-servidor.jar nao encontrado."
     echo "Execute primeiro: sh build.sh"
     exit 1
 fi
@@ -17,4 +17,4 @@ echo "(Mantenha este terminal aberto. Use Ctrl+C para encerrar.)"
 echo ""
 
 java -Djava.rmi.server.hostname=localhost \
-     -jar mensagens-servidor.jar
+     -jar estoque-servidor.jar

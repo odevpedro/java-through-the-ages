@@ -1,4 +1,4 @@
-package mensagens;
+package chamados;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

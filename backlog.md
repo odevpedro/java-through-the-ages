@@ -67,3 +67,5 @@ coerente com o contexto da epoca — nao uma repeticao do mesmo dominio funciona
 | `[x]` DTOs para desacoplar API do modelo interno (Mod 09, 10, 11) | 2026-06-30 | 09, 10, 11 |
 | `[x]` Testes unitarios com JUnit 5 + Mockito (Mod 09, 10, 11, 12) | 2026-06-30 | 09, 10, 11, 12 |
 | `[x]` data-model.md atualizado com BigDecimal e tipos corrigidos | 2026-06-30 | docs |
+| `[x]` Limpeza: pacote 'mensagens' renomeado para dominio real (01, 02, 03, 04) | 2026-09-11 | 01, 02, 03, 04 |
+| `[x]` Remocao da pasta orfa 05-javame (residuo pre-reescrita) | 2026-09-11 | — |

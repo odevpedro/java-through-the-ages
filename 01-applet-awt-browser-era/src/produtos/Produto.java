@@ -1,4 +1,4 @@
-package mensagens;
+package produtos;
 
 public class Produto {
     private String nome;

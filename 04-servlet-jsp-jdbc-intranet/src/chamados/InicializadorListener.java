@@ -1,4 +1,4 @@
-package mensagens;
+package chamados;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

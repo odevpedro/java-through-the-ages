@@ -8,12 +8,12 @@
     <display-name>Chamados Internos</display-name>
 
     <listener>
-        <listener-class>mensagens.InicializadorListener</listener-class>
+        <listener-class>chamados.InicializadorListener</listener-class>
     </listener>
 
     <servlet>
         <servlet-name>ChamadoServlet</servlet-name>
-        <servlet-class>mensagens.ChamadoServlet</servlet-class>
+        <servlet-class>chamados.ChamadoServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
