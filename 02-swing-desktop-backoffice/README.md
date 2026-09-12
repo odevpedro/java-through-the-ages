@@ -73,6 +73,10 @@ chmod +x build.sh
 build.bat
 ```
 
+## Captura de tela
+
+![Swing Desktop](docs/screenshot02.png)
+
 ## 9. Evolucao posterior
 
 | Limitacao | Solucao posterior |

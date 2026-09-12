@@ -174,6 +174,10 @@ javac -d out -sourcepath src src/processador/*.java
 java -cp out processador.Main
 ```
 
+## Captura de tela
+
+![Console Java 5](docs/screenshot08.png)
+
 ## 9. O que essa era resolveu
 
 Comparado ao Java 1.4 (modulo 07):

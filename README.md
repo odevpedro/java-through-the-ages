@@ -48,6 +48,19 @@ exigencias do mercado e do conhecimento acumulado ate aquele momento.
 
 ---
 
+## Capturas de tela
+
+| Modulo | Era | Captura |
+|--------|-----|---------|
+| 01 | Applet/AWT (1995) | ![Applet AWT](01-applet-awt-browser-era/docs/screenshot01.png) |
+| 02 | Swing Desktop (1998) | ![Swing](02-swing-desktop-backoffice/docs/screenshot02.png) |
+| 03 | RMI (1997) | Terminal com RMI (sem GUI) |
+| 04 | Servlet/JSP (1999) | Página web no Tomcat (sem GUI) |
+| 08 | Java 5 (2004) | ![Console Java 5](08-java5-generics-annotations-concurrency/docs/screenshot08.png) |
+| 10 | Spring Boot (2014) | Atuator HTTP (sem GUI) |
+
+---
+
 ## Tabela de modulos
 
 | # | Modulo | Era | Problema historico | Aplicacao | Tecnologias |
@@ -106,6 +119,25 @@ com as ferramentas disponiveis na epoca.
 
 Cada modulo e uma capsula do tempo. Aprenda com as limitacoes. Entenda por que
 cada geracao seguinte surgiu para resolver as dores da anterior.
+
+---
+
+## Requisitos rapidos por modulo
+
+| Modulo | JDK | Build | Deps externas | Screenshot |
+|--------|-----|-------|---------------|------------|
+| 01 | 8 | `./build.sh` | Nenhuma | [PNG](01-applet-awt-browser-era/docs/screenshot01.png) |
+| 02 | 8+ | `./build.sh` | Nenhuma | [PNG](02-swing-desktop-backoffice/docs/screenshot02.png) |
+| 03 | 8 | `./build.sh` | rmiregistry (ja inclui) | — |
+| 04 | 8 | `./build.sh` | **Tomcat 8+** (instalar) | [HTML](04-servlet-jsp-jdbc-intranet/web/) |
+| 05 | 8 | `./build.sh` | JBoss/WebLogic (ou simulador) | — |
+| 06 | 8 | `./build.sh` | Nenhuma (emulator) | — |
+| 07 | 8+ | `mvn compile exec:java` | Maven | — |
+| 08 | 5+ | `./build.sh` | Nenhuma | [PNG](08-java5-generics-annotations-concurrency/docs/screenshot08.png) |
+| 09 | 11+ | `mvn spring-boot:run` | Maven | — |
+| 10 | 11+ | `mvn spring-boot:run` | Maven | — |
+| 11 | 17+ | `mvn spring-boot:run` | Maven | — |
+| 12 | 17+ | `./build.sh` | Nenhuma | — |
 
 ---
 

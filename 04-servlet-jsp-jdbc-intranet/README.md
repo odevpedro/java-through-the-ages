@@ -49,7 +49,28 @@ Browser --> Tomcat --> ChamadoServlet (doGet/doPost)
 This module shows the raw, unfiltered Java web experience. Every Servlet mapped in XML. Every SQL query manual. Every JSP filled with Java code. This is WHY frameworks like Struts, Spring MVC, and later Spring Boot were created.
 
 ## 8. Build e execucao
-Requires JDK 8 + Tomcat + HSQLDB (download-deps.sh baixa automaticamente)
+
+Requer JDK 8 + Tomcat + HSQLDB (download-deps.sh baixa o HSQLDB automaticamente)
+
+### Instalando o Tomcat
+
+```bash
+# Baixar e extrair o Tomcat (exemplo para Tomcat 8.5+)
+wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.99/bin/apache-tomcat-8.5.99.tar.gz
+tar -xzf apache-tomcat-8.5.99.tar.gz
+export TOMCAT_LIB="$PWD/apache-tomcat-8.5.99/lib"
+```
+
+Ou, se o Tomcat ja esta instalado em outro lugar, defina a variavel:
+```bash
+export TOMCAT_LIB=/caminho/para/tomcat/lib
+```
+
+O `build.sh` usa `$TOMCAT_LIB/servlet-api.jar` para compilar. O `build.bat` usa `%TOMCAT_LIB%\servlet-api.jar`.
+
+## Captura de tela
+
+A aplicacao roda como web app no Tomcat. Acessando `http://localhost:8080/chamados` ve-se o formulario de chamados internos com listagem em JSP.
 
 ## 9. Evolucao posterior
 @WebServlet annotation, JSTL+EL, Connection Pool, Hibernate, Spring, Spring Boot

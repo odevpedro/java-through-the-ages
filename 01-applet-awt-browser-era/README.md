@@ -70,6 +70,10 @@ Para JDK 11+ (sem appletviewer), use Docker:
 docker run -it --rm -v "$PWD":/app -w /app openjdk:8 ./build.sh
 ```
 
+## Captura de tela
+
+![Applet AWT](docs/screenshot01.png)
+
 ## 9. Evolucao posterior
 
 | Limitacao | Solucao posterior |
